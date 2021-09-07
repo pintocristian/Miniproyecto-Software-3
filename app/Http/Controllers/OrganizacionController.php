@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Organizacion;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class OrganizacionController extends Controller
 {
     /**
@@ -40,12 +42,25 @@ class OrganizacionController extends Controller
     public function store(Request $request)
     {
         //
+        /*
         $organizacion = new organizacion();
         $organizacion->nombre = $request->get('nombre');
         $organizacion->imagen = $request->get('imagen');
         $organizacion->ubicacion = $request->get('ubicacion');
         $organizacion->telefono = $request->get('telefono');
         $organizacion->save();
+        return redirect('/organizacion');
+        */
+
+        $request->validate([
+            'nombre' => 'required', 'imagen' => 'required|image|mimes:jpeg,png,svg|max:1024', 'ubicacion' => 'required', 'telefono'=>'required'
+        ]);
+
+        $organizacion=request()->except('_token');
+        if($request->hasFile('imagen')){
+            $organizacion['imagen']=$request->file('imagen')->store   ('uploads','public');
+        }
+        Organizacion::insert($organizacion);
         return redirect('/organizacion');
     }
 
@@ -82,12 +97,27 @@ class OrganizacionController extends Controller
     public function update(Request $request,$id)
     {
         //
+        /*
         $organizacion = Organizacion::find($id);
         $organizacion->nombre=$request->get('nombre');
         $organizacion->imagen=$request->get('imagen');
         $organizacion->ubicacion=$request->get('ubicacion');
         $organizacion->telefono=$request->get('telefono');
         $organizacion->save();
+        return redirect('/organizacion');*/
+
+        $datosOrganizacion = request()->except(['_token','_method']);
+
+        if($request->hasFile('imagen')){
+            $organizacion=Organizacion::findOrFail($id);
+
+            Storage::delete('public/'.$organizacion->imagen);
+
+            $datosOrganizacion['imagen']=$request->file('imagen')->store('uplodas','public');
+        }
+        Organizacion::where('id','=',$id)->update($datosOrganizacion);
+        $organizacion=Organizacion::findOrFail($id);
+
         return redirect('/organizacion');
     }
 

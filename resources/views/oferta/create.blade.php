@@ -1,14 +1,15 @@
 @extends('layouts.plantillabase')
 
 @section('contenido')
-<h2>CREAR ORGANIZACION</h2>
+<h2>CREAR OFERTA</h2>
 
-<form action="/organizacion" method="POST" enctype="multipart/form-data">
+<form action="/oferta" method="POST" enctype="multipart/form-data">
     @csrf
   <div class="mb-3">
     <label for="" class="form-label">Nombre</label>
     <input id="nombre" name="nombre" type="text" class="form-control" tabindex="1">    
-  
+  </div>
+
   <!-- Para ver la imagen seleccionada, de lo contrario no se -->
   <div class="grid grid-cols-1 mt-5 mx-7">
     <img id="imagenSeleccionada" style="max-height: 300px;">           
@@ -22,15 +23,20 @@
     </div>
   </div>
 
+
   <div class="mb-3">
-    <label for="" class="form-label">Ubicacion</label>
-    <input id="ubicacion" name="ubicacion" type="text" class="form-control" tabindex="3">
+    <label for="" class="form-label">Cantidad</label>
+    <input id="cantidad" name="cantidad" type="number" class="form-control" tabindex="3">
   </div>
   <div class="mb-3">
-    <label for="" class="form-label">Telefono</label>
-    <input id="telefono" name="telefono" type="number"  step="any" class="form-control" tabindex="3">
+    <label for="" class="form-label">Descuento</label>
+    <input id="descuento" name="descuento" type="number" step="any" class="form-control" tabindex="3">
   </div>
-  <a href="/organizacion" class="btn btn-secondary" tabindex="5">Cancelar</a>
+  <div class="mb-3">
+    <label for="" class="form-label">Precio</label>
+    <input id="precio" name="precio" type="number" step="any" value="0.00" class="form-control" tabindex="3">
+  </div>
+  <a href="/oferta" class="btn btn-secondary" tabindex="5">Cancelar</a>
   <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
 </form>
 

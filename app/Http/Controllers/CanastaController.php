@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Canasta;
+
+use Illuminate\Support\Facades\Storage;
+
+
 class CanastaController extends Controller
 {
    
@@ -82,12 +86,25 @@ class CanastaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $canasta= Canasta::find($id);
+        /*$canasta= Canasta::find($id);
         $canasta->nombre=$request->get('nombre');
         $canasta->imagen=$request->get('imagen');
         $canasta->cantidad=$request->get('cantidad');
         $canasta->precio=$request->get('precio');
-        $canasta->save();
+        $canasta->save();*/
+
+        $datosCanasta = request()->except(['_token','_method']);
+
+        if($request->hasFile('imagen')){
+            $canasta=Canasta::findOrFail($id);
+
+            Storage::delete('public/'.$canasta->imagen);
+
+            $datosCanasta['imagen']=$request->file('imagen')->store('uplodas','public');
+        }
+        Canasta::where('id','=',$id)->update($datosCanasta);
+        $canasta=Canasta::findOrFail($id);
+
         return redirect('/canasta');
     }
 
@@ -103,6 +120,6 @@ class CanastaController extends Controller
 
         $canasta = canasta::find($id);
         $canasta->delete();
-        return back()->with('succes', 'Usuario eliminado correctamente');
+        return back()->with('succes', 'Usuario Eliminado Correctamente');
     }
 }

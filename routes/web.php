@@ -40,6 +40,28 @@ Route::post('/organizacion',[App\Http\Controllers\OrganizacionController::class,
 Route::get('/organizacion/{organizacion}',[App\Http\Controllers\OrganizacionController::class, 'edit'])->name('organizacion.edit');
 Route::put('/organizacion/{organizacion}',[App\Http\Controllers\OrganizacionController::class, 'update'])->name('organizacion.update');
 Route::delete('/organizacion/{organizacion}',[App\Http\Controllers\OrganizacionController::class, 'destroy'])->name('organizacion.delete');
+
+Route::get('/inversionista',[App\Http\Controllers\InversionistaController::class, 'index'])->name('index.index');
+Route::get('/inversionista/create',[App\Http\Controllers\InversionistaController::class,'create']);
+Route::post('/inversionista',[App\Http\Controllers\InversionistaController::class,'store']);
+Route::get('/inversionista/{inversionista}/edit', [App\Http\Controllers\InversionistaController::class, 'edit'])->name('inversionista.edit');
+Route::put('/inversionista/{inversionista}', [App\Http\Controllers\InversionistaController::class, 'update'])->name('inversionista.update');
+Route::delete('/inversionista/{inversionista}', [App\Http\Controllers\InversionistaController::class, 'destroy'])->name('inversionista.delete');
+
+Route::get('/evento',[App\Http\Controllers\EventoController::class, 'index'])->name('index.index');
+Route::get('/evento/create',[App\Http\Controllers\EventoController::class,'create']);
+Route::post('/evento',[App\Http\Controllers\EventoController::class,'store']);
+Route::get('/evento/{evento}/edit', [App\Http\Controllers\EventoController::class, 'edit'])->name('evento.edit');
+Route::put('/evento/{evento}', [App\Http\Controllers\EventoController::class, 'update'])->name('evento.update');
+Route::delete('/evento/{evento}', [App\Http\Controllers\EventoController::class, 'destroy'])->name('evento.delete');
+
+Route::get('/oferta',[App\Http\Controllers\OfertaController::class, 'index'])->name('index.index');
+Route::get('/oferta/create',[App\Http\Controllers\OfertaController::class,'create']);
+Route::post('/oferta',[App\Http\Controllers\OfertaController::class,'store']);
+Route::get('/oferta/{oferta}/edit', [App\Http\Controllers\OfertaController::class, 'edit'])->name('oferta.edit');
+Route::put('/oferta/{oferta}', [App\Http\Controllers\OfertaController::class, 'update'])->name('oferta.update');
+Route::delete('/oferta/{oferta}', [App\Http\Controllers\OfertaController::class, 'destroy'])->name('oferta.delete');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

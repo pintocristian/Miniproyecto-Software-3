@@ -3,7 +3,7 @@
 @section('contenido')
 <h2>EDITAR ORGANIZACION</h2>
 
-<form action="{{route('organizacion.update',$organizacion->id)}}" method="POST">
+<form action="{{route('organizacion.update',$organizacion->id)}}" method="POST" enctype="multipart/form-data">
    
     @csrf
     @method('PUT')
@@ -11,9 +11,13 @@
     <label for="" class="form-label">Nombre</label>
     <input id="nombre" name="nombre" type="text" class="form-control" tabindex="1" value="{{$organizacion->nombre}}">    
   </div>
-  <div class="mb-3">
-    <label for="" class="form-label">Imagen</label>
-    <input id="imagen" name="imagen" type="text" class="form-control" tabindex="2" value="{{$organizacion->imagen}}">
+ <div class="mb-3">
+    <img src="{{asset('storage').'/'.$organizacion->imagen}}" alt="">
+    <label for="" class="form-label">Imagen</label> 
+    <div class='flex items-center justify-center w-full'>
+      
+        <input name="imagen" id="imagen" type='file' class="form-control" tabindex="2" value="{{$organizacion->imagen}}"/>
+   
   </div>
   <div class="mb-3">
     <label for="" class="form-label">Ubicacion</label>

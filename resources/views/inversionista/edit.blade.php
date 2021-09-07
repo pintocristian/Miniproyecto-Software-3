@@ -1,33 +1,33 @@
 @extends('layouts.plantillabase')
 
 @section('contenido')
-<h2>EDITAR CANASTA</h2>
+<h2>EDITAR INVERSIONISTA</h2>
 
-<form action="{{route('canasta.update',$canasta->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{route('inversionista.update',$inversionista->id)}}" method="POST" enctype="multipart/form-data">
    
     @csrf
     @method('PUT')
   <div class="mb-3">
     <label for="" class="form-label">Nombre</label>
-    <input id="nombre" name="nombre" type="text" class="form-control" tabindex="1" value="{{$canasta->nombre}}">    
+    <input id="nombre" name="nombre" type="text" class="form-control" tabindex="1" value="{{$inversionista->nombre}}">    
   </div>
   <div class="mb-3">
-    <img src="{{asset('storage').'/'.$canasta->imagen}}" alt="">
+    <img src="{{asset('storage').'/'.$inversionista->imagen}}" alt="">
     <label for="" class="form-label">Imagen</label> 
     <div class='flex items-center justify-center w-full'>
       
-        <input name="imagen" id="imagen" type='file' class="form-control" tabindex="2" value="{{$canasta->imagen}}"/>
+        <input name="imagen" id="imagen" type='file' class="form-control" tabindex="2" value="{{$inversionista->imagen}}"/>
    
   </div>
   <div class="mb-3">
-    <label for="" class="form-label">Cantidad</label>
-    <input id="cantidad" name="cantidad" type="number" class="form-control" tabindex="3" value="{{$canasta->cantidad}}">
+    <label for="" class="form-label">Descripcion</label>
+    <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="3" value="{{$inversionista->descripcion}}">
   </div>
   <div class="mb-3">
-    <label for="" class="form-label">Precio</label>
-    <input id="precio" name="precio" type="number" step="any" value="0.00" class="form-control" tabindex="3" value="{{$canasta->precio}}">
+    <label for="" class="form-label">Correo</label>
+    <input id="correo" name="correo" type="text" class="form-control" tabindex="3" value="{{$inversionista->correo}}">
   </div>
-  <a href="/canasta" class="btn btn-secondary" tabindex="5">Cancelar</a>
+  <a href="/inversionista" class="btn btn-secondary" tabindex="5">Cancelar</a>
   <button type="submit" class="btn btn-primary" tabindex="4">Guardar</button>
 </form>
 

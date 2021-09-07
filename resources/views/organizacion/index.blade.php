@@ -19,7 +19,9 @@
 		<tr>
 			<td>{{$organizacion->id}}</td>
 			<td>{{$organizacion->nombre}}</td>
-			<td>{{$organizacion->imagen}}</td>
+			<td >
+                <img src="{{asset('storage').'/'.$organizacion->imagen}}" alt="" width="100" height="100">
+            </td>
 			<td>{{$organizacion->ubicacion}}</td>
 			<td>{{$organizacion->telefono}}</td>
 			<td> 

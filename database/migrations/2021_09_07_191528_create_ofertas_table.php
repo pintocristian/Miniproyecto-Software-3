@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrganizacionsTable extends Migration
+class CreateOfertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateOrganizacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizacions', function (Blueprint $table) {
+        Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',250);
+            $table->string('nombre',50);
             $table->string('imagen',250);
-            $table->string('ubicacion',250);
-            $table->string('telefono',250);
+            $table->integer('cantidad');
+            $table->integer('descuento');
+            $table->integer('precio');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateOrganizacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizacions');
+        Schema::dropIfExists('ofertas');
     }
 }
